@@ -1,3 +1,15 @@
+## Environment Variables
+
+REACT_APP_AUTH0_DOMAIN: Auth0 domain.
+
+REACT_APP_AUTH0_CLIENT_ID: Auth0 Client ID.
+
+REACT_APP_AUTH0_REDIRECT_URI: Redirect URI.
+
+REACT_APP_AUTH0_SCOPES: Token scopes.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -9,8 +9,8 @@ export default function Home(props) {
   if (isLoading) return <div>LOADING...</div>;
 
   return (
-    <>
-      <p>HOME</p>
+    <div className="home">
+      <p>HOME PAGE</p>
       {isAuthenticated ? (
         <Redirect to={{pathname: '/profile', state: {user}}} />
       ) : (
@@ -18,6 +18,6 @@ export default function Home(props) {
           <LoginButton />
         </>
       )}
-    </>
+    </div>
   );
 }

@@ -6,17 +6,12 @@ import LogoutButton from '../components/LogoutButton';
 import {Redirect} from 'react-router-dom';
 
 export default function Profile(props) {
-  const {
-    isAuthenticated,
-    user,
-    getAccessTokenSilently,
-    getIdTokenClaims,
-  } = useAuth0();
+  const {user, getAccessTokenSilently, getIdTokenClaims} = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
   const [assets, setAssets] = useState(null);
 
   useEffect(() => {
-    async function onMount() {
+    async function getUserInfo() {
       try {
         const [user_metadata, apiResp] = await Promise.all([
           getUserMetaData(),
@@ -25,14 +20,13 @@ export default function Profile(props) {
 
         setUserMetadata(user_metadata);
         setAssets(apiResp);
-        // console.log(apiResp);
       } catch (error) {
         console.log(error);
       }
     }
 
     if (user) {
-      onMount();
+      getUserInfo();
     }
   }, [user]);
 
@@ -68,13 +62,9 @@ export default function Profile(props) {
     return res.data;
   }
 
-  if (!isAuthenticated) {
-    return <Redirect to="/" />;
-  }
-
   return (
-    <div>
-      <h1>PROFILE</h1>
+    <div className="profile">
+      <h1>PROFILE PAGE</h1>
       <img src={user.picture} alt={user.name} />
       <h2>Hello {user.name} !</h2>
       <p>{user.email}</p>

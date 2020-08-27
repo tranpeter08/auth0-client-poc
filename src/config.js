@@ -6,3 +6,4 @@ export const auth0Config = {
   redirectUri:
     process.env.REACT_APP_AUTH0_REDIRECT_URI || 'http://localhost:3000',
 };
+export const RESOURCE_SERVER_URL = process.env.REACT_APP_RESOURCE_SERVER_URL;

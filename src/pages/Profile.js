@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useAuth0} from '@auth0/auth0-react';
-import {auth0Config} from '../config';
+import {auth0Config, RESOURCE_SERVER_URL} from '../config';
 import axios from 'axios';
 import LogoutButton from '../components/LogoutButton';
 import {Redirect} from 'react-router-dom';
@@ -51,7 +51,7 @@ export default function Profile(props) {
   async function getAssests() {
     const idToken = await getIdTokenClaims();
 
-    const res = await axios.get('http://localhost:8000/auth0', {
+    const res = await axios.get(`${RESOURCE_SERVER_URL}/auth0`, {
       headers: {
         Authorization: `Bearer ${idToken.__raw}`,
         'Content-Type': 'application/json',

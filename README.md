@@ -8,6 +8,8 @@ REACT_APP_AUTH0_REDIRECT_URI: Redirect URI.
 
 REACT_APP_AUTH0_SCOPES: Token scopes.
 
+REACT_APP_RESOURCE_SERVER_URL: Base URL of resource server.
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

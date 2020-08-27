@@ -4,16 +4,21 @@ import {Auth0Provider} from '@auth0/auth0-react';
 import {auth0Config} from './config';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-
-console.log(auth0Config);
+import ProtectedRoute from './components/ProtectedRoute';
+import Loading from './components/Loading';
+import './App.css';
 
 function App() {
   return (
     <Auth0Provider {...auth0Config}>
       <BrowserRouter>
         <Switch>
-          <Route path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            onRedirecting={() => <Loading />}
+          />
         </Switch>
       </BrowserRouter>
     </Auth0Provider>

@@ -65,29 +65,12 @@ export default function Profile(props) {
 
   async function updateAuth0UserMetadata() {
     try {
-      // const idToken = await getIdTokenClaims();
-
-      // console.log(idToken);
       const userDetailsByIdUrl = `https://${auth0Config.domain}/api/v2/users/${user.sub}`;
       const accessToken = await getAccessTokenSilently({
         audience: `https://${auth0Config.domain}/api/v2/`,
         scope: auth0Config.scope,
         redirect_uri: auth0Config.redirectUri,
       });
-
-      // const metadataResponse = await axios.patch(
-      //   RESOURCE_SERVER_URL + '/users/meta_data',
-      //   {user_metadata: 'trest'},
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${idToken.__raw}`,
-      //       'Content-Type': 'application/json',
-      //     },
-      //   }
-      // );
-
-      // const data = await metadataResponse.json();
-      // console.log({data});
 
       const resp = await axios.patch(
         userDetailsByIdUrl,
@@ -129,7 +112,9 @@ export default function Profile(props) {
       <h1>PROFILE PAGE</h1>
       <img src={user.picture} alt={user.name} />
       <h2>Hello {user.name} !</h2>
-      <p>Email: {user.email || (userMetadata && userMetadata.email)}</p>
+      <p>
+        Email: {user.email || (userMetadata && userMetadata.email) || 'N/A'}
+      </p>
       {user.email || (userMetadata && userMetadata.email) ? null : (
         <div>
           <label>
